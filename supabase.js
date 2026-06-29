@@ -3,7 +3,7 @@
 // ============================================
 
 const SUPABASE_URL = 'https://vvhimouzkjhmlnymbcvp.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_3Gbq1P749E0T8I8QJuog7A_6XSBpYiT';
+const SUPABASE_ANON_KEY = 'sb_publishable_qoevFwRBS5ER0p6xTrcwLw_U1T2XxhD';
 
 // Initialize Supabase client
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
