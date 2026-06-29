@@ -1,69 +1,74 @@
-# Shamli Stone Work Website
+# 🏔️ Shamli Stone Work - Premium Stone & Tile Solutions
 
-Premium quality stone and tile work website with admin panel for photo management.
+![Shamli Stone Work Logo](logo.png)
 
-## Features
+[![Visit Website](https://img.shields.io/badge/Visit-Website-2c3e50?style=for-the-badge)](https://shamli-stone-work.pages.dev)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-Contact-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/919627535352)
 
-- 🖼️ Dynamic photo gallery with 12 categories
+---
+
+## 📋 **About**
+
+**Shamli Stone Work** is your trusted partner for premium quality stone, marble, granite, and tile solutions in Shamli, Uttar Pradesh.
+
+With years of experience in the industry, we specialize in providing top-notch craftsmanship for residential and commercial projects.
+
+---
+
+## ✨ **Features**
+
+- ️ Dynamic photo gallery with 12 categories
 - 🔐 Secure admin panel for photo uploads
 - 📱 Fully responsive design
 - ⚡ Fast loading with lazy loading
 - 🎨 Modern UI/UX design
 
-## Categories
+---
 
-1. Tiles Work
-2. Stone
-3. Simple Stones
-4. Wall Tiles
-5. Floor Tiles
-6. Step Riser
-7. Model Kitchen
-8. Model Almari
-9. Model Wash Basin
-10. Front Tiles
-11. Ramp
-12. Pillar Design
+## 🏗️ **Our Services**
 
-## Setup Instructions
+1. **Tiles Work** - Premium quality tiles for all purposes
+2. **Stone Work** - Natural stone solutions
+3. **Floor Tiles** - Durable and stylish flooring
+4. **Model Kitchen** - Modern kitchen designs
+5. **Model Almari** - Custom almari solutions
+6. **Pillar Design** - Architectural pillar work
+7. **Wall Tiles** - Decorative wall solutions
+8. **Step Riser** - Staircase finishing
+9. **Simple Stones** - Basic stone work
+10. **Front Tiles** - Entrance designs
+11. **Ramp** - Accessibility solutions
+12. **Model Wash Basin** - Modern basin designs
 
-### 1. Supabase Setup
+---
 
-1. Create account at [supabase.com](https://supabase.com)
-2. Create new project
-3. Run SQL queries to create tables
-4. Create storage bucket named "photos" (public)
-5. Copy your Supabase URL and anon key
+## 📱 **Contact Information**
 
-### 2. Configuration
+📍 **Address:** Main Market, Shamli, Uttar Pradesh  
+📞 **Phone:** +91 96275 35352  
+📧 **Email:** aashumalik784@gmail.com  
+⏰ **Working Hours:** Mon - Sat: 9:00 AM - 7:00 PM
 
-Edit `supabase.js` file:
-```javascript
-const SUPABASE_URL = 'your-supabase-url';
-const SUPABASE_ANON_KEY = 'your-anon-key';
-```
+---
 
-### 3. Deployment
+## 🔗 **Quick Links**
 
-#### GitHub + Cloudflare Pages
+- 🌐 **Website:** https://shamli-stone-work.pages.dev
+- 📱 **Gallery:** https://shamli-stone-work.pages.dev/gallery.html
+- 🔐 **Admin Panel:** https://shamli-stone-work.pages.dev/login.html
 
-1. Push code to GitHub
-2. Connect repository to Cloudflare Pages
-3. Deploy (no build command needed)
+---
 
-## Admin Access
+## 📲 **Connect on WhatsApp**
 
-- Login URL: `/login.html`
-- Default credentials: Check Supabase Authentication
+[![Chat on WhatsApp](https://img.shields.io/badge/Chat-Now-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/919627535352)
 
-## Tech Stack
+---
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- Supabase (Backend & Storage)
-- Cloudflare Pages (Hosting)
+## 📄 **License**
 
-## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-© 2026 Shamli Stone Work. All Rights Reserved.
+---
+
+**© 2026 Shamli Stone Work. All Rights Reserved.**
