@@ -2,7 +2,7 @@
 // SUPABASE CONFIGURATION
 // ============================================
 
-const SUPABASE_URL = 'https://vvhimouzkjhm1nymbcvp.supabase.co';
+const SUPABASE_URL = 'https://vvhimouzkjhmlnymbcvp.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_3Gbq1P749E0T8I8QJuog7A_6XSBpYiT';
 
 // Initialize Supabase client
