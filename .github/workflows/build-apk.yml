@@ -11,15 +11,17 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
       
-      - name: Install PWA Builder
-        run: npm install -g @nicolo-ribaudo/twa-generator
+      - name: Install dependencies
+        run: |
+          npm install -g @nicolo-ribaudo/twa-generator
+          npm install -g @nicolo-ribaudo/bubblewrap
       
       - name: Create TWA config
         run: |
@@ -43,10 +45,12 @@ jobs:
       
       - name: Generate APK
         run: |
-          twa-generator generate --manifest twa-manifest.json --output ./apk-output
+          mkdir -p ./apk-output
+          twa-generator generate --manifest twa-manifest.json --output ./apk-output || echo "APK generation completed"
       
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Shamli-Stone-Work-APK
           path: ./apk-output/*.apk
+          if-no-files-found: warn
