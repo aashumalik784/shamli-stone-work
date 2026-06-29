@@ -15,6 +15,11 @@
     --white: #ffffff;
     --shadow: 0 4px 6px rgba(0,0,0,0.1);
     --shadow-hover: 0 8px 15px rgba(0,0,0,0.2);
+    /* Social Media Colors */
+    --facebook-color: #1877F2;
+    --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    --whatsapp-color: #25D366;
+    --whatsapp-dark: #128C7E;
 }
 
 body {
@@ -76,6 +81,11 @@ body {
 .nav-links a.active {
     color: var(--accent-color);
     background: rgba(255,255,255,0.1);
+}
+
+.admin-link {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .burger {
@@ -290,6 +300,11 @@ body {
     color: var(--text-light);
 }
 
+/* WhatsApp Specific Icon Color */
+.info-item .fa-whatsapp {
+    color: var(--whatsapp-color) !important;
+}
+
 .contact-form form {
     display: flex;
     flex-direction: column;
@@ -311,6 +326,32 @@ body {
     border-color: var(--secondary-color);
 }
 
+/* WhatsApp Button */
+.whatsapp-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: var(--whatsapp-color);
+    color: white !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+    background: var(--whatsapp-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-btn i {
+    color: white !important;
+    margin-right: 8px;
+}
+
 /* Footer */
 footer {
     background: var(--primary-color);
@@ -319,19 +360,62 @@ footer {
     text-align: center;
 }
 
+/* Footer Social Links with Original Brand Colors */
 .social-links {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .social-links a {
     color: var(--white);
-    font-size: 1.5rem;
-    margin: 0 10px;
-    transition: color 0.3s;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.social-links a:hover {
-    color: var(--accent-color);
+/* Facebook - Original Blue */
+.social-links a.facebook {
+    background: #1877F2;
+    color: white;
+}
+
+.social-links a.facebook:hover {
+    background: #0d65d9;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(24, 119, 242, 0.5);
+}
+
+/* Instagram - Original Gradient */
+.social-links a.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+}
+
+.social-links a.instagram:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(220, 39, 67, 0.5);
+}
+
+/* WhatsApp - Original Green */
+.social-links a.whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.social-links a.whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
 }
 
 /* Gallery Page Styles */
@@ -551,4 +635,15 @@ footer {
     .filter-btn {
         flex-shrink: 0;
     }
-  }
+
+    .social-links a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    .whatsapp-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
