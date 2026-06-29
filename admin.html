@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Shamli Stone Work</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .admin-header h1 {
+            font-size: 1.8rem;
+        }
+        .admin-header h1 i {
+            margin-right: 10px;
+        }
+        .logout-btn {
+            padding: 10px 25px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .logout-btn:hover {
+            background: white;
+            color: #667eea;
+        }
+        .upload-section {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .upload-section h2 {
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-size: 1.6rem;
+        }
+        .upload-section h2 i {
+            color: #667eea;
+            margin-right: 10px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.05rem;
+        }
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        .form-group select:focus,
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .file-input-wrapper {
+            position: relative;
+        }
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+        .file-input-label {
+            display: block;
+            padding: 40px 20px;
+            background: #f8f9ff;
+            border: 3px dashed #667eea;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .file-input-label:hover {
+            background: #f0f2ff;
+            border-color: #5568d3;
+        }
+        .file-input-label i {
+            font-size: 3.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .file-input-label p {
+            margin: 8px 0;
+            color: #555;
+        }
+        .file-input-label .main-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .file-input-label .sub-text {
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .preview-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .remove-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(231, 76, 60, 0.95);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .remove-btn:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+        .upload-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+        .upload-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
+        .upload-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 35px;
+            background: #f4f4f9;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 20px;
+            display: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+            border: 2px solid #c3e6cb;
+        }
+        .success-message i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        .stats-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .stat-card h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .stat-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1><i class="fas fa-cog"></i> Admin Panel</h1>
+            <a href="#" class="logout-btn" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+
+        <div class="stats-box">
+            <div class="stat-card">
+                <i class="fas fa-images"></i>
+                <h3 id="total-photos">0</h3>
+                <p>Total Photos</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-folder"></i>
+                <h3 id="total-categories">0</h3>
+                <p>Categories</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-upload"></i>
+                <h3 id="today-uploads">0</h3>
+                <p>Uploaded Today</p>
+            </div>
+        </div>
+
+        <div class="upload-section">
+            <h2><i class="fas fa-cloud-upload-alt"></i> Upload New Photos</h2>
+            
+            <div class="success-message" id="success-message">
+                <i class="fas fa-check-circle"></i> Photos uploaded successfully!
+            </div>
+
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="category">Select Category *</label>
+                    <select id="category" required>
+                        <option value="">-- Select Category --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Photos *</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="photo-input" accept="image/*" multiple required>
+                        <label for="photo-input" class="file-input-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p class="main-text">Click to select photos</p>
+                            <p class="sub-text">You can select multiple photos at once (JPG, PNG, WEBP)</p>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="preview-container" id="preview-container"></div>
+
+                <div class="form-group">
+                    <label for="title">Photo Title (Optional)</label>
+                    <input type="text" id="title" placeholder="Enter photo title (leave empty to use filename)">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description (Optional)</label>
+                    <textarea id="description" rows="3" placeholder="Enter photo description"></textarea>
+                </div>
+
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress-fill" id="progress-fill">0%</div>
+                </div>
+
+                <button type="submit" class="upload-btn" id="upload-btn">
+                    <i class="fas fa-upload"></i> Upload Photos
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin.js"></script>
+</body>
+  </html>
