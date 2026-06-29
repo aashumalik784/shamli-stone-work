@@ -1,0 +1,52 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install PWA Builder
+        run: npm install -g @nicolo-ribaudo/twa-generator
+      
+      - name: Create TWA config
+        run: |
+          cat > twa-manifest.json << 'EOF'
+          {
+            "packageId": "com.shamlistonework.app",
+            "host": "shamli-stone-work.pages.dev",
+            "name": "Shamli Stone Work",
+            "launcherName": "Shamli Stone",
+            "themeColor": "#2c3e50",
+            "backgroundColor": "#2c3e50",
+            "enableNotifications": false,
+            "signing": {
+              "file": "android.keystore",
+              "alias": "my-key-alias"
+            },
+            "appVersion": "1.0.0",
+            "appVersionCode": 1
+          }
+          EOF
+      
+      - name: Generate APK
+        run: |
+          twa-generator generate --manifest twa-manifest.json --output ./apk-output
+      
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: Shamli-Stone-Work-APK
+          path: ./apk-output/*.apk
