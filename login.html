@@ -34,6 +34,7 @@
         }
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
         .form-group label {
             display: block;
@@ -52,6 +53,19 @@
         .form-group input:focus {
             outline: none;
             border-color: #667eea;
+        }
+        .password-wrapper {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #667eea;
+            font-size: 1.1rem;
+            user-select: none;
         }
         .login-btn {
             width: 100%;
@@ -80,6 +94,29 @@
             margin-bottom: 20px;
             display: none;
             text-align: center;
+            font-size: 0.95rem;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+        .debug-info {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #555;
+            display: none;
+        }
+        .debug-info.show {
+            display: block;
         }
         .back-link {
             text-align: center;
@@ -97,22 +134,33 @@
             <h1><i class="fas fa-lock"></i> Admin Login</h1>
             
             <div class="error-message" id="error-message"></div>
+            <div class="success-message" id="success-message"></div>
             
             <form id="login-form">
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="admin@shamlistonework.com" required>
+                    <input type="email" id="email" placeholder="aashumalik784@gmail.com" required autocomplete="email">
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
+                        <span class="toggle-password" id="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
                 </div>
                 
                 <button type="submit" class="login-btn" id="login-btn">
                     <i class="fas fa-sign-in-alt"></i> Login
                 </button>
             </form>
+            
+            <div class="debug-info" id="debug-info">
+                <strong>Debug Info:</strong><br>
+                <span id="debug-text"></span>
+            </div>
             
             <div class="back-link">
                 <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Website</a>
@@ -123,6 +171,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase.js"></script>
     <script>
+        // Password visibility toggle
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        });
+
         // Check if already logged in
         checkAuth().then(session => {
             if (session) {
@@ -134,28 +192,69 @@
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
             const loginBtn = document.getElementById('login-btn');
+            const debugInfo = document.getElementById('debug-info');
+            const debugText = document.getElementById('debug-text');
+            
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            debugInfo.classList.remove('show');
             
             loginBtn.disabled = true;
             loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
-            errorMessage.style.display = 'none';
+            
+            console.log('Attempting login with email:', email);
+            debugText.innerHTML = `Email: ${email}<br>Status: Connecting to Supabase...`;
+            debugInfo.classList.add('show');
             
             try {
+                // Check if Supabase client is initialized
+                if (typeof supabaseClient === 'undefined') {
+                    throw new Error('Supabase client not initialized. Check supabase.js file.');
+                }
+                
+                debugText.innerHTML += `<br>✓ Supabase client loaded`;
+                
                 const { data, error } = await supabaseClient.auth.signInWithPassword({
                     email: email,
                     password: password
                 });
                 
-                if (error) throw error;
+                if (error) {
+                    console.error('Supabase error:', error);
+                    debugText.innerHTML += `<br>❌ Error: ${error.message}`;
+                    
+                    // Show specific error message
+                    let userMessage = '';
+                    if (error.message.includes('Invalid login credentials')) {
+                        userMessage = '❌ Email ya password galat hai. Dobara check karein.';
+                    } else if (error.message.includes('Email not confirmed')) {
+                        userMessage = '❌ Email confirm nahi hua. Supabase mein user ko confirm karein.';
+                    } else {
+                        userMessage = '❌ ' + error.message;
+                    }
+                    
+                    throw new Error(userMessage);
+                }
                 
-                // Redirect to admin panel
-                window.location.href = 'admin.html';
+                // Success
+                console.log('Login successful:', data);
+                debugText.innerHTML += `<br>✓ Login successful! Redirecting...`;
+                successMessage.textContent = '✓ Login successful! Redirecting...';
+                successMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 1000);
+                
             } catch (error) {
                 console.error('Login error:', error);
-                errorMessage.textContent = 'Invalid email or password. Please try again.';
+                errorMessage.textContent = error.message || 'Invalid email or password. Please try again.';
                 errorMessage.style.display = 'block';
                 loginBtn.disabled = false;
                 loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
@@ -163,4 +262,4 @@
         });
     </script>
 </body>
-  </html>
+</html>
