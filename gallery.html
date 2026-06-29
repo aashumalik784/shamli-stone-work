@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Shamli Stone Work</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo"><i class="fas fa-mountain"></i> Shamli Stone Work</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery Header -->
+    <section class="page-header">
+        <h1>Our Portfolio</h1>
+        <p>Browse through our collection of premium stone and tile work</p>
+    </section>
+
+    <!-- Category Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="tiles-work">Tiles Work</button>
+            <button class="filter-btn" data-filter="stone">Stone</button>
+            <button class="filter-btn" data-filter="simple-stones">Simple Stones</button>
+            <button class="filter-btn" data-filter="wall-tiles">Wall Tiles</button>
+            <button class="filter-btn" data-filter="floor-tiles">Floor Tiles</button>
+            <button class="filter-btn" data-filter="step-riser">Step Riser</button>
+            <button class="filter-btn" data-filter="model-kitchen">Model Kitchen</button>
+            <button class="filter-btn" data-filter="model-almari">Model Almari</button>
+            <button class="filter-btn" data-filter="model-wash-basin">Model Wash Basin</button>
+            <button class="filter-btn" data-filter="front-tiles">Front Tiles</button>
+            <button class="filter-btn" data-filter="ramp">Ramp</button>
+            <button class="filter-btn" data-filter="pillar-design">Pillar Design</button>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-section">
+        <div class="container">
+            
+            <!-- Tiles Work Gallery -->
+            <div class="gallery-category" id="tiles-work">
+                <h2 class="category-title"><i class="fas fa-th"></i> Tiles Work Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="tiles-work">
+                        <img src="images/tiles-work/tile1.jpg" alt="Tiles Work 1" onerror="this.src='https://via.placeholder.com/400x300?text=Tiles+Work+1'">
+                        <div class="overlay">
+                            <h3>Tiles Work</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="tiles-work">
+                        <img src="images/tiles-work/tile2.jpg" alt="Tiles Work 2" onerror="this.src='https://via.placeholder.com/400x300?text=Tiles+Work+2'">
+                        <div class="overlay">
+                            <h3>Tiles Work</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="tiles-work">
+                        <img src="images/tiles-work/tile3.jpg" alt="Tiles Work 3" onerror="this.src='https://via.placeholder.com/400x300?text=Tiles+Work+3'">
+                        <div class="overlay">
+                            <h3>Tiles Work</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stone Gallery -->
+            <div class="gallery-category" id="stone">
+                <h2 class="category-title"><i class="fas fa-gem"></i> Stone Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="stone">
+                        <img src="images/stone/stone1.jpg" alt="Stone 1" onerror="this.src='https://via.placeholder.com/400x300?text=Stone+1'">
+                        <div class="overlay">
+                            <h3>Stone Work</h3>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="stone">
+                        <img src="images/stone/stone2.jpg" alt="Stone 2" onerror="this.src='https://via.placeholder.com/400x300?text=Stone+2'">
+                        <div class="overlay">
+                            <h3>Stone Work</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simple Stones Gallery -->
+            <div class="gallery-category" id="simple-stones">
+                <h2 class="category-title"><i class="fas fa-cube"></i> Simple Stones Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="simple-stones">
+                        <img src="images/simple-stones/simple1.jpg" alt="Simple Stone 1" onerror="this.src='https://via.placeholder.com/400x300?text=Simple+Stone+1'">
+                        <div class="overlay">
+                            <h3>Simple Stone</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wall Tiles Gallery -->
+            <div class="gallery-category" id="wall-tiles">
+                <h2 class="category-title"><i class="fas fa-wall-brick"></i> Wall Tiles Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="wall-tiles">
+                        <img src="images/wall-tiles/wall1.jpg" alt="Wall Tile 1" onerror="this.src='https://via.placeholder.com/400x300?text=Wall+Tile+1'">
+                        <div class="overlay">
+                            <h3>Wall Tiles</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floor Tiles Gallery -->
+            <div class="gallery-category" id="floor-tiles">
+                <h2 class="category-title"><i class="fas fa-layer-group"></i> Floor Tiles Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="floor-tiles">
+                        <img src="images/floor-tiles/floor1.jpg" alt="Floor Tile 1" onerror="this.src='https://via.placeholder.com/400x300?text=Floor+Tile+1'">
+                        <div class="overlay">
+                            <h3>Floor Tiles</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step Riser Gallery -->
+            <div class="gallery-category" id="step-riser">
+                <h2 class="category-title"><i class="fas fa-stairs"></i> Step Riser Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="step-riser">
+                        <img src="images/step-riser/step1.jpg" alt="Step Riser 1" onerror="this.src='https://via.placeholder.com/400x300?text=Step+Riser+1'">
+                        <div class="overlay">
+                            <h3>Step Riser</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Kitchen Gallery -->
+            <div class="gallery-category" id="model-kitchen">
+                <h2 class="category-title"><i class="fas fa-utensils"></i> Model Kitchen Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="model-kitchen">
+                        <img src="images/model-kitchen/kitchen1.jpg" alt="Model Kitchen 1" onerror="this.src='https://via.placeholder.com/400x300?text=Model+Kitchen+1'">
+                        <div class="overlay">
+                            <h3>Model Kitchen</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Almari Gallery -->
+            <div class="gallery-category" id="model-almari">
+                <h2 class="category-title"><i class="fas fa-door-closed"></i> Model Almari Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="model-almari">
+                        <img src="images/model-almari/almari1.jpg" alt="Model Almari 1" onerror="this.src='https://via.placeholder.com/400x300?text=Model+Almari+1'">
+                        <div class="overlay">
+                            <h3>Model Almari</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Wash Basin Gallery -->
+            <div class="gallery-category" id="model-wash-basin">
+                <h2 class="category-title"><i class="fas fa-sink"></i> Model Wash Basin Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="model-wash-basin">
+                        <img src="images/model-wash-basin/washbasin1.jpg" alt="Model Wash Basin 1" onerror="this.src='https://via.placeholder.com/400x300?text=Wash+Basin+1'">
+                        <div class="overlay">
+                            <h3>Model Wash Basin</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Front Tiles Gallery -->
+            <div class="gallery-category" id="front-tiles">
+                <h2 class="category-title"><i class="fas fa-building"></i> Front Tiles Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="front-tiles">
+                        <img src="images/front-tiles/front1.jpg" alt="Front Tiles 1" onerror="this.src='https://via.placeholder.com/400x300?text=Front+Tiles+1'">
+                        <div class="overlay">
+                            <h3>Front Tiles</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ramp Gallery -->
+            <div class="gallery-category" id="ramp">
+                <h2 class="category-title"><i class="fas fa-wheelchair"></i> Ramp Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="ramp">
+                        <img src="images/ramp/ramp1.jpg" alt="Ramp 1" onerror="this.src='https://via.placeholder.com/400x300?text=Ramp+1'">
+                        <div class="overlay">
+                            <h3>Ramp</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar Design Gallery -->
+            <div class="gallery-category" id="pillar-design">
+                <h2 class="category-title"><i class="fas fa-archway"></i> Pillar Design Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="pillar-design">
+                        <img src="images/pillar-design/pillar1.jpg" alt="Pillar Design 1" onerror="this.src='https://via.placeholder.com/400x300?text=Pillar+Design+1'">
+                        <div class="overlay">
+                            <h3>Pillar Design</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shamli Stone Work. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
