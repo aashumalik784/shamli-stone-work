@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#2c3e50" rx="60"/>
+  
+  <!-- Mountain/Stone Shape -->
+  <path d="M256 80 L420 380 L92 380 Z" fill="#e74c3c" stroke="#f39c12" stroke-width="8"/>
+  
+  <!-- Inner Detail - Stone Texture -->
+  <path d="M256 120 L380 340 L132 340 Z" fill="#c0392b"/>
+  
+  <!-- Top Peak -->
+  <circle cx="256" cy="100" r="15" fill="#f39c12"/>
+  
+  <!-- Text "SSW" -->
+  <text x="256" y="310" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">SSW</text>
+  
+  <!-- Bottom Line -->
+  <line x1="150" y1="350" x2="362" y2="350" stroke="#f39c12" stroke-width="6" stroke-linecap="round"/>
+</svg>
