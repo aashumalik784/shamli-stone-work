@@ -1,10 +1,9 @@
 // ============================================
 // SUPABASE CONFIGURATION
 // ============================================
-// IMPORTANT: Yahan apni Supabase details dalein
 
-const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';  // Apna URL dalein
-const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY_HERE';  // Apna anon key dalein
+const SUPABASE_URL = 'https://vvhimouzkjhm1nymbcvp.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_3Gbq1P749E0T8I8QJuog7A_6XSBpYiT';
 
 // Initialize Supabase client
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
