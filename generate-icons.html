@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate App Icons</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .canvas-container {
+            display: none;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #667eea;
+            color: white;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .success {
+            background: #27ae60;
+        }
+        .success:hover {
+            background: #229954;
+        }
+        .preview {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .preview-item {
+            text-align: center;
+        }
+        .preview-item img {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .preview-item p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+        }
+        .info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .info h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .info ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .info li {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 App Icons Generator</h1>
+        <p>Shamli Stone Work ke liye icons generate karein</p>
+        
+        <div class="buttons">
+            <button onclick="generateAndDownload192()">📥 Download 192x192</button>
+            <button onclick="generateAndDownload512()">📥 Download 512x512</button>
+            <button onclick="downloadBoth()" class="success">📦 Download Both</button>
+        </div>
+        
+        <div class="preview">
+            <div class="preview-item">
+                <img id="preview-192" width="192" height="192" alt="192x192">
+                <p>192×192 px</p>
+            </div>
+            <div class="preview-item">
+                <img id="preview-512" width="128" height="128" alt="512x512">
+                <p>512×512 px</p>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>📝 Kaise Use Karein:</h3>
+            <ol>
+                <li>Upar diye gaye buttons se icons download karein</li>
+                <li>GitHub repository mein upload karein</li>
+                <li>File names: <code>icon-192.png</code> aur <code>icon-512.png</code></li>
+                <li>Cloudflare automatically update karega</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="canvas-container">
+        <canvas id="canvas-192" width="192" height="192"></canvas>
+        <canvas id="canvas-512" width="512" height="512"></canvas>
+    </div>
+
+    <script>
+        // Generate icons on page load
+        window.onload = function() {
+            generateIcon(192);
+            generateIcon(512);
+        };
+
+        function generateIcon(size) {
+            const canvas = document.getElementById(`canvas-${size}`);
+            const ctx = canvas.getContext('2d');
+            const scale = size / 512;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Background
+            ctx.fillStyle = '#2c3e50';
+            ctx.fillRect(0, 0, size, size);
+
+            // Rounded corners
+            ctx.beginPath();
+            ctx.moveTo(60 * scale, 0);
+            ctx.lineTo(size - 60 * scale, 0);
+            ctx.quadraticCurveTo(size, 0, size, 60 * scale);
+            ctx.lineTo(size, size - 60 * scale);
+            ctx.quadraticCurveTo(size, size, size - 60 * scale, size);
+            ctx.lineTo(60 * scale, size);
+            ctx.quadraticCurveTo(0, size, 0, size - 60 * scale);
+            ctx.lineTo(0, 60 * scale);
+            ctx.quadraticCurveTo(0, 0, 60 * scale, 0);
+            ctx.closePath();
+            ctx.fillStyle = '#2c3e50';
+            ctx.fill();
+
+            // Mountain/Stone Shape
+            ctx.beginPath();
+            ctx.moveTo(size * 0.5, size * 0.15);
+            ctx.lineTo(size * 0.85, size * 0.75);
+            ctx.lineTo(size * 0.15, size * 0.75);
+            ctx.closePath();
+            ctx.fillStyle = '#e74c3c';
+            ctx.fill();
+            ctx.strokeStyle = '#f39c12';
+            ctx.lineWidth = 8 * scale;
+            ctx.stroke();
+
+            // Inner Detail
+            ctx.beginPath();
+            ctx.moveTo(size * 0.5, size * 0.23);
+            ctx.lineTo(size * 0.78, size * 0.68);
+            ctx.lineTo(size * 0.22, size * 0.68);
+            ctx.closePath();
+            ctx.fillStyle = '#c0392b';
+            ctx.fill();
+
+            // Top Peak Circle
+            ctx.beginPath();
+            ctx.arc(size * 0.5, size * 0.195, 15 * scale, 0, Math.PI * 2);
+            ctx.fillStyle = '#f39c12';
+            ctx.fill();
+
+            // Text "SSW"
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${48 * scale}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('SSW', size * 0.5, size * 0.605);
+
+            // Bottom Line
+            ctx.beginPath();
+            ctx.moveTo(size * 0.293, size * 0.684);
+            ctx.lineTo(size * 0.707, size * 0.684);
+            ctx.strokeStyle = '#f39c12';
+            ctx.lineWidth = 6 * scale;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+
+            // Update preview
+            const dataURL = canvas.toDataURL('image/png');
+            document.getElementById(`preview-${size}`).src = dataURL;
+            
+            return canvas;
+        }
+
+        function downloadCanvas(size) {
+            const canvas = document.getElementById(`canvas-${size}`);
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function generateAndDownload192() {
+            generateIcon(192);
+            setTimeout(() => downloadCanvas(192), 100);
+        }
+
+        function generateAndDownload512() {
+            generateIcon(512);
+            setTimeout(() => downloadCanvas(512), 100);
+        }
+
+        function downloadBoth() {
+            generateAndDownload192();
+            setTimeout(() => generateAndDownload512(), 500);
+        }
+    </script>
+</body>
+</html>
